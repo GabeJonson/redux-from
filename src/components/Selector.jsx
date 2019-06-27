@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Selector = ({ input, meta: { asyncValidating, touched, error } }) => (
+const Selector = ({
+  input,
+  options,
+  meta: { asyncValidating, touched, error },
+}) => (
   <>
     <select
       name="gender"
@@ -8,8 +12,11 @@ const Selector = ({ input, meta: { asyncValidating, touched, error } }) => (
       className={asyncValidating ? 'invalid' : ''}
     >
       <option value="" />
-      <option value="male">male</option>
-      <option value="female">female</option>
+      {options.map(option => (
+        <option value={option} key={option}>
+          {option}
+        </option>
+      ))}
     </select>
     {touched && error && <span>{error}</span>}
   </>
